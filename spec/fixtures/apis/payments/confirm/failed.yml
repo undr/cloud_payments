@@ -1,0 +1,6 @@
+---
+:request:
+  :url: '/payments/confirm'
+  :body: '{"TransactionId":12345,"Amount":120}'
+:response:
+  :body: '{"Success":false,"Message":null}'

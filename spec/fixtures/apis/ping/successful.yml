@@ -1,0 +1,5 @@
+---
+:request:
+  :url: '/test'
+:response:
+  :body: '{"Success":true}'

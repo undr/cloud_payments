@@ -1,0 +1,31 @@
+---
+:request:
+  :url: '/subscriptions/get'
+  :body: '{"Id":"sc_8cf8a9338fb"}'
+:response:
+  :body: >
+    {
+      "Model":{
+        "Id":"sc_8cf8a9338fb",
+        "AccountId":"user@example.com",
+        "Description":"Monthly subscription",
+        "Email":"user@example.com",
+        "Amount":1.02,
+        "CurrencyCode":0,
+        "Currency":"RUB",
+        "RequireConfirmation":false,
+        "StartDateIso":"2014-08-09T11:49:41",
+        "IntervalCode":1,
+        "Interval":"Month",
+        "Period":1,
+        "MaxPeriods":12,
+        "StatusCode":0,
+        "Status":"Active",
+        "SuccessfulTransactionsNumber":0,
+        "FailedTransactionsNumber":0,
+        "LastTransactionDateIso":"2014-08-09T11:49:41",
+        "NextTransactionDateIso":"2014-08-09T11:49:41"
+      },
+      "Success":true,
+      "Message": null
+    }

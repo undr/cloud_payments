@@ -1,0 +1,15 @@
+---
+:request:
+  :url: '/payments/cards/auth'
+  :body: '{"Amount":10,"Currency":"RUB","InvoiceId":"1234567","Description":"Payment for goods on example.com","AccountId":"user_x","Name":"CARDHOLDER NAME","CardCryptogramPacket":"01492500008719030128SM"}'
+:response:
+  :body: >
+    {
+      "Model": {
+        "TransactionId": 12345,
+        "PaReq": "eJxVUdtugkAQ",
+        "AcsUrl": "https://test.paymentgate.ru/acs/auth/start.do"
+      },
+      "Success": false,
+      "Message": null
+    }

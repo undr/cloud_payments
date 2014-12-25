@@ -1,0 +1,45 @@
+---
+:request:
+  :url: '/payments/cards/auth'
+  :body: '{"Amount":10,"Currency":"RUB","InvoiceId":"1234567","Description":"Payment for goods on example.com","AccountId":"user_x","Name":"CARDHOLDER NAME","CardCryptogramPacket":"01492500008719030128SM"}'
+:response:
+  :body: >
+    {
+      "Model": {
+        "TransactionId": 12345,
+        "Amount": 10.0,
+        "Currency": "RUB",
+        "CurrencyCode": 0,
+        "PaymentAmount": 10.0,
+        "PaymentCurrency": "RUB",
+        "PaymentCurrencyCode": 0,
+        "InvoiceId": "1234567",
+        "AccountId": "user_x",
+        "Email": null,
+        "Description": "Payment for goods on example.com",
+        "JsonData": null,
+        "CreatedDate": "\/Date(1401718880000)\/",
+        "CreatedDateIso":"2014-08-09T11:49:41",
+        "TestMode": true,
+        "IpAddress": "195.91.194.13",
+        "IpCountry": "RU",
+        "IpCity": "Ufa",
+        "IpRegion": "Bashkortostan Republic",
+        "IpDistrict": "Volga Federal District",
+        "IpLatitude": 54.7355,
+        "IpLongitude": 55.991982,
+        "CardFirstSix": "411111",
+        "CardLastFour": "1111",
+        "CardType": "Visa",
+        "CardTypeCode": 0,
+        "IssuerBankCountry": "RU",
+        "Status": "Declined",
+        "StatusCode": 5,
+        "Reason": "InsufficientFunds",
+        "ReasonCode": 5051,
+        "CardHolderMessage": "Insufficient funds on account",
+        "Name": "CARDHOLDER NAME"
+      },
+      "Success": false,
+      "Message": null
+    }

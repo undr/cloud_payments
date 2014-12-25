@@ -1,0 +1,4 @@
+--format progress
+--color
+--backtrace
+--order random

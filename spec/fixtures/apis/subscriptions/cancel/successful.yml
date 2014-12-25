@@ -1,0 +1,6 @@
+---
+:request:
+  :url: '/subscriptions/cancel'
+  :body: '{"Id":"sc_8cf8a9338fb"}'
+:response:
+  :body: '{"Success":true,"Message": null}'
