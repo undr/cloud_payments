@@ -32,8 +32,3 @@ module CloudPayments
     @client ||= Client.new
   end
 end
-
-CloudPayments.configure do |c|
-  c.host = 'http://localhost:9292'
-  c.log = true
-end
