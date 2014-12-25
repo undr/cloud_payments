@@ -48,7 +48,7 @@ CloudPayments.client.ping
 ### Cryptogram-based payments
 
 ```ruby
-tansaction = CloudPayments.client.payments.cards.charge(
+transaction = CloudPayments.client.payments.cards.charge(
   amount: 120,
   currency: 'RUB',
   ip_address: request.remote_ip,
@@ -88,9 +88,9 @@ tansaction = CloudPayments.client.payments.cards.charge(
 # :card_holder_message=>"Payment successful",
 # :name=>"CARDHOLDER NAME",
 # :token=>"a4e67841-abb0-42de-a364-d1d8f9f4b3c0"}
-tansaction.class
+transaction.class
 # => CloudPayments::Transaction
-tansaction.token
+transaction.token
 # => "a4e67841-abb0-42de-a364-d1d8f9f4b3c0"
 ```
 
