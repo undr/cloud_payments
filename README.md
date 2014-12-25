@@ -2,6 +2,8 @@
 
 CloudPayments ruby client (http://cloudpayments.eu/Docs/Integration)
 
+[![Build Status](https://travis-ci.org/undr/cloud_payments.svg)](https://travis-ci.org/undr/cloud_payments)
+
 ## Installation
 
 Add this line to your application's Gemfile:
