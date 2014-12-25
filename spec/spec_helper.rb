@@ -8,6 +8,8 @@ end
 require 'bundler'
 Bundler.require(:default, :test)
 
+WebMock.disable_net_connect!(allow: 'https://codeclimate.com/test_reports')
+
 Dir["./spec/support/**/*.rb"].each { |f| require f }
 
 CloudPayments.configure do |c|
