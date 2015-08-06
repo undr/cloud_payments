@@ -47,15 +47,29 @@ describe CloudPayments::Namespaces::Base do
     context 'when failed request' do
       before{ stub_api('/testnamespace/path', request_body).to_return(body: failed_body, headers: headers) }
 
-      specify{ expect{
-        subject.request(:path, request_params)
-      }.to raise_error(CloudPayments::Client::GatewayError, 'Error message') }
+      context 'config.raise_banking_errors = true' do
+        before { CloudPayments.config.raise_banking_errors = true }
+        specify{ expect{ subject.request(:path, request_params) }.to raise_error(CloudPayments::Client::GatewayError, 'Error message') }
+      end
+
+      context 'config.raise_banking_errors = false' do
+        before { CloudPayments.config.raise_banking_errors = false }
+        specify{ expect{ subject.request(:path, request_params) }.to raise_error(CloudPayments::Client::GatewayError, 'Error message') }
+      end
     end
 
     context 'when failed transaction' do
       before{ stub_api('/testnamespace/path', request_body).to_return(body: failed_transaction_body, headers: headers) }
 
-      specify{ expect{ subject.request(:path, request_params) }.not_to raise_error }
+      context 'config.raise_banking_errors = true' do
+        before { CloudPayments.config.raise_banking_errors = true }
+        specify{ expect{ subject.request(:path, request_params) }.to raise_error(CloudPayments::Client::GatewayErrors::LostCard) }
+      end
+
+      context 'config.raise_banking_errors = false' do
+        before { CloudPayments.config.raise_banking_errors = false }
+        specify{ expect{ subject.request(:path, request_params) }.not_to raise_error }
+      end
     end
   end
 end
