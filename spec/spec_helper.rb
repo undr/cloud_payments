@@ -17,6 +17,7 @@ CloudPayments.configure do |c|
   c.secret_key = 'pass'
   c.host = 'http://localhost:9292'
   c.log = false
+  # c.raise_banking_errors = true
 end
 
 RSpec.configure do |config|

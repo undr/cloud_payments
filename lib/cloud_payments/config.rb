@@ -1,6 +1,6 @@
 module CloudPayments
   class Config
-    attr_accessor :connection_options, :serializer, :log, :public_key, :secret_key, :host
+    attr_accessor :connection_options, :serializer, :log, :public_key, :secret_key, :host, :raise_banking_errors
     attr_writer :logger
 
     DEFAULT_LOGGER = ->{

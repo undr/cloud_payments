@@ -37,6 +37,7 @@ CloudPayments.configure do |c|
   c.secret_key = ''
   c.log = false                       # By default. it is true
   c.logger = Logger.new('/dev/null')  # By default, it writes logs to stdout
+  c.raise_banking_errors = true       # By default, it is not raising banking errors
 end
 ```
 

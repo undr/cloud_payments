@@ -16,7 +16,7 @@ module CloudPayments
 
       def request(path, params = {})
         response = client.perform_request(resource_path(path), params)
-        raise_gateway_error_if_needed(response.body) unless response.body[:success]
+        raise_gateway_error(response.body) unless response.body[:success]
         response.body
       end
 
@@ -30,8 +30,20 @@ module CloudPayments
         [parent_path, self.class.resource_name, path].flatten.compact.join(?/).squeeze(?/)
       end
 
-      def raise_gateway_error_if_needed(body)
-        raise Client::GatewayError.new(body[:message], body) if !body[:message].nil? && !body[:message].empty?
+      def raise_gateway_error(body)
+        raise_reasoned_gateway_error(body) || raise_raw_gateway_error(body)
+      end
+
+      def raise_reasoned_gateway_error(body)
+        fail Client::GATEWAY_ERRORS[body[:model][:reason_code]].new(body) if reason_present?(body)
+      end
+
+      def raise_raw_gateway_error(body)
+        fail Client::GatewayError.new(body[:message], body) if !body[:message].nil? && !body[:message].empty?
+      end
+
+      def reason_present?(body)
+        !body[:model].nil? && !body[:model].empty? && !body[:model][:reason_code].nil? && CloudPayments.config.raise_banking_errors
       end
     end
   end
