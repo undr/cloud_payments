@@ -30,4 +30,40 @@ describe CloudPayments::Webhooks do
       end
     end
   end
+
+  describe 'on_recurrent' do
+    let(:raw_data) do
+      {"Id"=>"sc_a38ca02005d40db7d32b36a0097b0",
+       "AccountId"=>"1234",
+       "Description"=>"just description",
+       "Email"=>"user@example.com",
+       "Amount"=>"2.00",
+       "Currency"=>"RUB",
+       "RequireConfirmation"=>"0",
+       "StartDate"=>"2015-12-17 20:22:14",
+       "Interval"=>"Month",
+       "Period"=>"1",
+       "Status"=>"PastDue",
+       "SuccessfulTransactionsNumber"=>"11",
+       "FailedTransactionsNumber"=>"22",
+       "NextTransactionDate"=>"2015-11-18 20:29:05"}
+    end
+
+    subject { CloudPayments.webhooks.on_recurrent(raw_data) }
+
+    specify { expect(subject.id).to eq 'sc_a38ca02005d40db7d32b36a0097b0' }
+    specify { expect(subject.account_id).to eq '1234' }
+    specify { expect(subject.description).to eq 'just description' }
+    specify { expect(subject.email).to eq 'user@example.com' }
+    specify { expect(subject.amount).to eq 2.00 }
+    specify { expect(subject.currency).to eq 'RUB' }
+    specify { expect(subject.require_confirmation).to eq false }
+    specify { expect(subject.started_at).to eq DateTime.parse('2015-12-17 20:22:14') }
+    specify { expect(subject.interval).to eq 'Month' }
+    specify { expect(subject.period).to eq 1 }
+    specify { expect(subject.status).to eq 'PastDue' }
+    specify { expect(subject.successful_transactions).to eq 11 }
+    specify { expect(subject.failed_transactions).to eq 22 }
+    specify { expect(subject.next_transaction_at).to eq DateTime.parse('2015-11-18 20:29:05') }
+  end
 end

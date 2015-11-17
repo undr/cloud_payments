@@ -1,10 +1,6 @@
 module CloudPayments
   class Subscription < Model
-    ACTIVE = 'Active'
-    PAST_DUE = 'PastDue'
-    CANCELLED = 'Cancelled'
-    REJECTED = 'Rejected'
-    EXPIRED = 'Expired'
+    include LikeSubscription
 
     property :id, required: true
     property :account_id, required: true
@@ -25,25 +21,5 @@ module CloudPayments
     property :failed_transactions, from: :failed_transactions_number, required: true
     property :last_transaction_at, from: :last_transaction_date_iso, with: DateTimeTransform
     property :next_transaction_at, from: :next_transaction_date_iso, with: DateTimeTransform
-
-    def active?
-      status == ACTIVE
-    end
-
-    def past_due?
-      status == PAST_DUE
-    end
-
-    def cancelled?
-      status == CANCELLED
-    end
-
-    def rejected?
-      status == REJECTED
-    end
-
-    def expired?
-      status == EXPIRED
-    end
   end
 end

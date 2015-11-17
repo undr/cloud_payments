@@ -10,6 +10,7 @@ module CloudPayments
     def initialize
       @config = CloudPayments.config
       @digest = OpenSSL::Digest.new('sha256')
+      @serializer = Client::Serializer::Base.new(config)
     end
 
     def data_valid?(data, hmac)
@@ -19,6 +20,10 @@ module CloudPayments
     def validate_data!(data, hmac)
       raise HMACError unless data_valid?(data, hmac)
       true
+    end
+
+    def on_recurrent(data)
+      OnRecurrent.new(@serializer.load(data))
     end
   end
 end
