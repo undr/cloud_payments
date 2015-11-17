@@ -16,10 +16,10 @@ module CloudPayments
     property :email
     property :description
     property :metadata, from: :json_data, default: {}
-    property :date_time, transform_with: ->(v){ DateTime.parse(v) if v }
-    property :created_at, from: :created_date_iso, with: ->(v){ DateTime.parse(v) if v }
-    property :authorized_at, from: :auth_date_iso, with: ->(v){ DateTime.parse(v) if v }
-    property :confirmed_at, from: :confirm_date_iso, with: ->(v){ DateTime.parse(v) if v }
+    property :date_time, transform_with: DateTimeTransform
+    property :created_at, from: :created_date_iso, with: DateTimeTransform
+    property :authorized_at, from: :auth_date_iso, with: DateTimeTransform
+    property :confirmed_at, from: :confirm_date_iso, with: DateTimeTransform
     property :auth_code
     property :test_mode, required: true
     property :ip_address
