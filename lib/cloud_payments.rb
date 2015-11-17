@@ -8,6 +8,7 @@ require 'cloud_payments/config'
 require 'cloud_payments/namespaces'
 require 'cloud_payments/models'
 require 'cloud_payments/client'
+require 'cloud_payments/webhooks'
 
 module CloudPayments
   extend self
@@ -30,5 +31,9 @@ module CloudPayments
 
   def client
     @client ||= Client.new
+  end
+
+  def webhooks
+    @webhooks ||= Webhooks.new
   end
 end
