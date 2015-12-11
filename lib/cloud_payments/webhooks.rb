@@ -25,5 +25,13 @@ module CloudPayments
     def on_recurrent(data)
       OnRecurrent.new(@serializer.load(data))
     end
+
+    def on_pay(data)
+      OnPay.new(@serializer.load(data))
+    end
+
+    def on_fail(data)
+      OnFail.new(@serializer.load(data))
+    end
   end
 end

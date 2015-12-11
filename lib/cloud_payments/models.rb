@@ -5,3 +5,5 @@ require 'cloud_payments/models/transaction'
 require 'cloud_payments/models/subscription'
 
 require 'cloud_payments/models/on_recurrent'
+require 'cloud_payments/models/on_pay'
+require 'cloud_payments/models/on_fail'
