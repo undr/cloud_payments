@@ -182,14 +182,11 @@ describe CloudPayments::Webhooks do
     specify { expect(subject.ip_city).to eq 'Санкт-Петербург' }
     specify { expect(subject.ip_region).to eq 'Санкт-Петербург' }
     specify { expect(subject.ip_district).to eq 'Северо-Западный федеральный округ' }
-    specify { expect(subject.ip_lat).to eq '59.939037' }
-    specify { expect(subject.ip_lng).to eq '30.315784' }
     specify { expect(subject.card_first_six).to eq '400005' }
     specify { expect(subject.card_last_four).to eq '5556' }
     specify { expect(subject.card_type).to eq 'Visa' }
     specify { expect(subject.card_exp_date).to eq '01/19' }
     specify { expect(subject.description).to eq 'Оплата в example.com' }
-    specify { expect(subject.status).to eq 'Declined' }
   end
 
   describe 'on_recurrent' do
