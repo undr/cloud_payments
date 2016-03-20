@@ -97,6 +97,41 @@ transaction.token
 # => "a4e67841-abb0-42de-a364-d1d8f9f4b3c0"
 ```
 
+## Webhooks
+
+```ruby
+if CloudPayments.webhooks.data_valid?(payload, hmac_token)
+  event = CloudPayments.webhooks.on_recurrent(payload)
+  # or
+  event = CloudPayments.webhooks.on_pay(payload)
+  # or
+  event = CloudPayments.webhooks.on_fail(payload)
+end
+```
+
+with capturing of an exception
+
+```ruby
+rescue_from CloudPayments::Webhooks::HMACError, :handle_hmac_error
+
+before_action -> { CloudPayments.webhooks.validate_data!(payload, hmac_token) }
+
+def pay
+  event = CloudPayments.webhooks.on_pay(payload)
+  # ...
+end
+
+def fail
+  event = CloudPayments.webhooks.on_fail(payload)
+  # ...
+end
+
+def recurrent
+  event = CloudPayments.webhooks.on_recurrent(payload)
+  # ...
+end
+```
+
 ## Contributing
 
 1. Fork it ( https://github.com/undr/cloud_payments/fork )
