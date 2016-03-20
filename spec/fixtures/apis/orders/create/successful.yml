@@ -1,0 +1,20 @@
+---
+:request:
+  :url: '/orders/create'
+  :body: '{"Amount":10.0,"Currency":"RUB","Description":"Оплата на сайте example.com","Email":"client@test.local","RequireConfirmation":true,"SendEmail":false,"InvoiceId":"invoice_100","AccountId":"account_200","Phone":"+7(495)765-4321","SendSms":false,"SendWhatsApp":false}'
+:response:
+  :body: >
+    {
+      "Model":{
+        "Id":"f2K8LV6reGE9WBFn",
+        "Number":61,
+        "Amount":10.0,
+        "Currency":"RUB",
+        "CurrencyCode":0,
+        "Email":"client@test.local",
+        "Description":"Оплата на сайте example.com",
+        "RequireConfirmation":true,
+        "Url":"https://orders.cloudpayments.ru/d/f2K8LV6reGE9WBFn"
+      },
+      "Success":true
+    }

@@ -3,6 +3,7 @@ require 'cloud_payments/namespaces/cards'
 require 'cloud_payments/namespaces/tokens'
 require 'cloud_payments/namespaces/payments'
 require 'cloud_payments/namespaces/subscriptions'
+require 'cloud_payments/namespaces/orders'
 
 module CloudPayments
   module Namespaces
@@ -12,6 +13,10 @@ module CloudPayments
 
     def subscriptions
       Subscriptions.new(self)
+    end
+
+    def orders
+      Orders.new(self)
     end
 
     def ping
