@@ -1,6 +1,7 @@
 language: ruby
+sudo:     false
 cache:    bundler
-script:   bundle  exec rspec
+script:   bundle exec rspec
 env:
   - CODECLIMATE_REPO_TOKEN=8e9b89269d9aafc2dec2706a43825201de496b743505d7a7666068f7b22b07d
 rvm:
