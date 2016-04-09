@@ -1,5 +1,6 @@
 module CloudPayments
   class Client
+    class ReasonedGatewayError < StandardError; end
     module GatewayErrors; end
 
     REASON_CODES = {
@@ -29,7 +30,7 @@ module CloudPayments
 
     GATEWAY_ERRORS = REASON_CODES.inject({}) do |result, error|
       status, name = error
-      result[status] = GatewayErrors.const_set(name, Class.new(StandardError))
+      result[status] = GatewayErrors.const_set(name, Class.new(ReasonedGatewayError))
       result
     end
   end

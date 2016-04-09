@@ -63,7 +63,13 @@ describe CloudPayments::Namespaces::Base do
 
       context 'config.raise_banking_errors = true' do
         before { CloudPayments.config.raise_banking_errors = true }
-        specify{ expect{ subject.request(:path, request_params) }.to raise_error(CloudPayments::Client::GatewayErrors::LostCard) }
+        specify do
+          begin
+            subject.request(:path, request_params)
+          rescue CloudPayments::Client::GatewayErrors::LostCard => err
+            expect(err).to be_a CloudPayments::Client::ReasonedGatewayError
+          end
+        end
       end
 
       context 'config.raise_banking_errors = false' do
