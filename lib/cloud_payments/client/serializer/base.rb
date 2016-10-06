@@ -20,7 +20,12 @@ module CloudPayments
 
         def convert_keys_from_api(attributes)
           attributes.each_with_object({}) do |(key, value), result|
-            value = convert_keys_from_api(value) if value.is_a?(Hash)
+            value = \
+              case value
+              when Hash  then convert_keys_from_api(value)
+              when Array then value.map { |item| convert_keys_from_api(item) }
+              else value
+              end
 
             key = key.to_s.gsub(/([A-Z\d]+)([A-Z][a-z])/, '\1_\2')
             key.gsub!(/([a-z\d])([A-Z])/, '\1_\2')

@@ -1,7 +1,7 @@
 ---
 :request:
   :url: '/subscriptions/find'
-  :body: '{"accountId":"user@example.com"}'
+  :body: '{"AccountId":"user@example.com"}'
 :response:
   :body: >
     {

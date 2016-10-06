@@ -21,7 +21,7 @@ describe CloudPayments::Namespaces::Subscriptions do
     end
   end
 
-  describe '#find_all' do
+  describe '#find_all', :focus do
     context do
       before{ stub_api_request('subscriptions/find/successful').perform }
 
