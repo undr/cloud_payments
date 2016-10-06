@@ -14,8 +14,8 @@ describe CloudPayments::Namespaces::Base do
   subject{ TestNamespace.new(CloudPayments.client) }
 
   def stub_api(path, body = '')
-    url = "http://user:pass@localhost:9292#{path}"
-    stub_request(:post, url).with(body: body, headers: headers)
+    url = "http://localhost:9292#{path}"
+    stub_request(:post, url).with(body: body, headers: headers, basic_auth: ['user', 'pass'])
   end
 
   describe '#request' do

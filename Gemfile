@@ -6,5 +6,5 @@ gemspec
 gem 'oj'
 gem 'pry'
 gem 'rack'
-gem 'webmock', require: 'webmock/rspec'
+gem 'webmock'
 gem "codeclimate-test-reporter", group: :test, require: nil

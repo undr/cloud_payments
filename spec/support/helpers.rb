@@ -44,13 +44,13 @@ module CloudPayments
           @webmock_stub ||= begin
             if fixture
               WebMock::StubRegistry.instance.register_request_stub(WebMock::RequestStub.new(:post, url)).
-                with(body: request[:body] || '', headers: request_headers)
+                with(body: request[:body] || '', headers: request_headers, basic_auth: ['user', 'pass'])
             end
           end
         end
 
         def url
-          "http://user:pass@localhost:9292#{request[:url]}"
+          "http://localhost:9292#{request[:url]}"
         end
 
         def request_headers
