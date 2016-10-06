@@ -8,6 +8,9 @@ end
 require 'bundler'
 Bundler.require(:default, :test)
 
+require 'webmock/rspec'
+
+WebMock.enable!
 WebMock.disable_net_connect!
 
 Dir["./spec/support/**/*.rb"].each { |f| require f }
@@ -25,14 +28,4 @@ RSpec.configure do |config|
   config.include CloudPayments::RSpec::Helpers
 
   config.after(:suite){ WebMock.allow_net_connect! }
-
-  # config.around :each, time_freeze: ->(v){ v.is_a?(Date) || v.is_a?(Time) || v.is_a?(String) } do |example|
-  #   datetime = if example.metadata[:time_freeze].is_a?(String)
-  #     DateTime.parse(example.metadata[:time_freeze])
-  #   else
-  #     example.metadata[:time_freeze]
-  #   end
-
-  #   Timecop.freeze(datetime){ example.run }
-  # end
 end
