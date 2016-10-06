@@ -205,7 +205,7 @@ describe CloudPayments::Transaction do
     subject{ CloudPayments::Transaction.new(default_attributes.merge(attributes)) }
 
     describe '#subscription' do
-      before{ stub_api_request('subscriptions/find/successful').perform }
+      before{ stub_api_request('subscriptions/get/successful').perform }
 
       context 'with subscription_id' do
         let(:attributes){ { subscription_id: 'sc_8cf8a9338fb' } }

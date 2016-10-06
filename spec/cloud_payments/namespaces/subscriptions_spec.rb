@@ -5,12 +5,31 @@ describe CloudPayments::Namespaces::Subscriptions do
 
   describe '#find' do
     context do
-      before{ stub_api_request('subscriptions/find/successful').perform }
+      before{ stub_api_request('subscriptions/get/successful').perform }
 
       specify{ expect(subject.find('sc_8cf8a9338fb')).to be_instance_of(CloudPayments::Subscription) }
 
       context do
         let(:sub){ subject.find('sc_8cf8a9338fb') }
+
+        specify{ expect(sub.id).to eq('sc_8cf8a9338fb') }
+        specify{ expect(sub.account_id).to eq('user@example.com') }
+        specify{ expect(sub.description).to eq('Monthly subscription') }
+        specify{ expect(sub.started_at).to eq(DateTime.parse('2014-08-09T11:49:41')) }
+        specify{ expect(sub).to be_active }
+      end
+    end
+  end
+
+  describe '#find_all' do
+    context do
+      before{ stub_api_request('subscriptions/find/successful').perform }
+
+      specify{ expect(subject.find_all("user@example.com")).to be_instance_of(Array) }
+      specify{ expect(subject.find_all("user@example.com").first).to be_instance_of(CloudPayments::Subscription) }
+
+      context do
+        let(:sub){ subject.find_all("user@example.com").first }
 
         specify{ expect(sub.id).to eq('sc_8cf8a9338fb') }
         specify{ expect(sub.account_id).to eq('user@example.com') }
