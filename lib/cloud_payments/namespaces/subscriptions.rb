@@ -6,6 +6,11 @@ module CloudPayments
         Subscription.new(response[:model])
       end
 
+      def find_all(account_id)
+        response = request(:find, account_id: account_id)
+        Array(response[:model]).map { |item| Subscription.new(item) }
+      end
+
       def create(attributes)
         response = request(:create, attributes)
         Subscription.new(response[:model])
