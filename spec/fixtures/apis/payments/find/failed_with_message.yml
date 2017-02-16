@@ -1,0 +1,6 @@
+---
+:request:
+  :url: '/payments/find'
+  :body: '{"InvoiceId":"1234567"}'
+:response:
+  :body: '{"Success":false,"Message":"Not found"}'

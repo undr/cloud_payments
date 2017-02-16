@@ -27,6 +27,16 @@ module CloudPayments
         response = request(:post3ds, transaction_id: id, pa_res: pa_res)
         Transaction.new(response[:model])
       end
+
+      def get(id)
+        response = request(:get, transaction_id: id)
+        Transaction.new(response[:model])
+      end
+
+      def find(invoice_id)
+        response = request(:find, invoice_id: invoice_id)
+        Transaction.new(response[:model])
+      end
     end
   end
 end
