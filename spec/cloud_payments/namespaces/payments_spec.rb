@@ -114,7 +114,7 @@ describe CloudPayments::Namespaces::Payments do
         specify{ expect(subject.get(transaction_id).reason).to eq('InsufficientFunds') }
       end
 
-      context 'transaction is successfull' do
+      context 'transaction is successful' do
         before{ stub_api_request('payments/get/successful').perform }
         specify{ expect(subject.get(transaction_id)).to be_instance_of(CloudPayments::Transaction) }
         specify{ expect(subject.get(transaction_id)).not_to be_required_secure3d }
@@ -137,7 +137,7 @@ describe CloudPayments::Namespaces::Payments do
         specify{ expect{subject.get(transaction_id)}.to raise_error(CloudPayments::Client::GatewayErrors::InsufficientFunds) }
       end
 
-      context 'transaction is successfull' do
+      context 'transaction is successful' do
         before{ stub_api_request('payments/get/successful').perform }
         specify{ expect{subject.get(transaction_id)}.to_not raise_error }
         specify{ expect(subject.get(transaction_id)).to be_instance_of(CloudPayments::Transaction) }
@@ -170,7 +170,7 @@ describe CloudPayments::Namespaces::Payments do
         specify{ expect(subject.find(invoice_id).reason).to eq('InsufficientFunds') }
       end
 
-      context 'transaction is successfull' do
+      context 'transaction is successful' do
         before{ stub_api_request('payments/find/successful').perform }
         specify{ expect(subject.find(invoice_id)).to be_instance_of(CloudPayments::Transaction) }
         specify{ expect(subject.find(invoice_id)).not_to be_required_secure3d }
@@ -194,7 +194,7 @@ describe CloudPayments::Namespaces::Payments do
         specify{ expect{subject.find(invoice_id)}.to raise_error(CloudPayments::Client::GatewayErrors::InsufficientFunds) }
       end
 
-      context 'transaction is successfull' do
+      context 'transaction is successful' do
         before{ stub_api_request('payments/find/successful').perform }
         specify{ expect(subject.find(invoice_id)).to be_instance_of(CloudPayments::Transaction) }
         specify{ expect(subject.find(invoice_id)).not_to be_required_secure3d }
