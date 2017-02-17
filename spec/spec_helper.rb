@@ -1,10 +1,5 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 
-if ENV['CODECLIMATE_REPO_TOKEN']
-  require "codeclimate-test-reporter"
-  CodeClimate::TestReporter.start
-end
-
 require 'bundler'
 Bundler.require(:default, :test)
 
@@ -26,6 +21,4 @@ end
 RSpec.configure do |config|
   config.mock_with :rspec
   config.include CloudPayments::RSpec::Helpers
-
-  config.after(:suite){ WebMock.allow_net_connect! }
 end
