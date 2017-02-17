@@ -7,4 +7,3 @@ gem 'oj'
 gem 'pry'
 gem 'rack'
 gem 'webmock'
-gem "codeclimate-test-reporter", group: :test, require: nil

@@ -3,8 +3,6 @@
 CloudPayments ruby client (http://cloudpayments.eu/Docs/Integration)
 
 [![Build Status](https://travis-ci.org/undr/cloud_payments.svg)](https://travis-ci.org/undr/cloud_payments)
-[![Code Climate](https://codeclimate.com/github/undr/cloud_payments/badges/gpa.svg)](https://codeclimate.com/github/undr/cloud_payments)
-[![Test Coverage](https://codeclimate.com/github/undr/cloud_payments/badges/coverage.svg)](https://codeclimate.com/github/undr/cloud_payments)
 
 ## Installation
 
