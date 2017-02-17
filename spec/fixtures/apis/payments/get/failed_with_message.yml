@@ -1,0 +1,6 @@
+---
+:request:
+  :url: '/payments/get'
+  :body: '{"TransactionId":12345}'
+:response:
+  :body: '{"Success":false,"Message":"Not found"}'
