@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe CloudPayments::Client::Response do
   let(:status){ 200 }
-  let(:body){ '{"Model":{"Id":123,"CurrencyCode":"RUB","Amount":120},"Success":true}' }
+  let(:body){ '{"Model":{"Id":123,"CurrencyCode":"RUB","Amount":120},"Success":true}'.force_encoding('CP1251').freeze }
   let(:headers){ { 'content-type' => 'application/json' } }
 
   subject{ CloudPayments::Client::Response.new(status, body, headers) }
@@ -13,6 +13,7 @@ describe CloudPayments::Client::Response do
     context 'wnen content type does not match /json/' do
       let(:headers){ { 'content-type' => 'text/plain' } }
       specify{ expect(subject.body).to eq(body) }
+      specify{ expect(subject.body.encoding.name).to eq('UTF-8') }
     end
   end
 

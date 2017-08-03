@@ -5,7 +5,7 @@ module CloudPayments
 
       def initialize(status, body, headers = {})
         @status, @origin_body, @headers = status, body, headers
-        @origin_body = body.force_encoding('UTF-8') if body.respond_to?(:force_encoding)
+        @origin_body = body.dup.force_encoding('UTF-8') if body.respond_to?(:force_encoding)
       end
 
       def body
