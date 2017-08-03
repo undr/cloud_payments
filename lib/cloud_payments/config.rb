@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module CloudPayments
   class Config
     attr_accessor :connection_options, :serializer, :log, :public_key, :secret_key, :host, :raise_banking_errors

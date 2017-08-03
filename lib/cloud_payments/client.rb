@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'cloud_payments/client/errors'
 require 'cloud_payments/client/gateway_errors'
 require 'cloud_payments/client/response'

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module CloudPayments
   class OnRecurrent < Model
     property :id, required: true

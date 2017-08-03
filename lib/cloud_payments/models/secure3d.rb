@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module CloudPayments
   class Secure3D < Model
     property :transaction_id, required: true
