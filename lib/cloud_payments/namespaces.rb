@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'cloud_payments/namespaces/base'
 require 'cloud_payments/namespaces/cards'
 require 'cloud_payments/namespaces/tokens'

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module CloudPayments
   # @see https://cloudpayments.ru/Docs/Notifications#fail CloudPayments API
   class OnFail < Model
