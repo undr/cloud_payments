@@ -8,8 +8,8 @@ module CloudPayments
 
     attr_reader :config
 
-    def initialize
-      @config = CloudPayments.config
+    def initialize(config = nil)
+      @config = config || CloudPayments.config
       @digest = OpenSSL::Digest.new('sha256')
       @serializer = Client::Serializer::Base.new(config)
     end

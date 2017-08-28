@@ -12,6 +12,12 @@ module CloudPayments
       logger
     }
 
+    def self.configure
+      config = new
+      yield config
+      config
+    end
+
     def initialize
       @log = false
       @serializer = Client::Serializer::MultiJson.new(self)
