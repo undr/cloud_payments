@@ -12,6 +12,10 @@ module CloudPayments
       Payments.new(self)
     end
 
+    def kassa
+      Kassa.new(self)
+    end
+
     def subscriptions
       Subscriptions.new(self)
     end
