@@ -5,6 +5,7 @@ require 'cloud_payments/namespaces/tokens'
 require 'cloud_payments/namespaces/payments'
 require 'cloud_payments/namespaces/subscriptions'
 require 'cloud_payments/namespaces/orders'
+require 'cloud_payments/namespaces/kassa'
 
 module CloudPayments
   module Namespaces
