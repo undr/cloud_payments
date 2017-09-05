@@ -36,6 +36,7 @@ module CloudPayments
     property :card_type_code
     property :card_exp_date
     property :name
+    property :issuer
     property :issuer_bank_country
     property :status, required: true
     property :status_code

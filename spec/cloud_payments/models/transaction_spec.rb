@@ -34,6 +34,7 @@ describe CloudPayments::Transaction do
       card_type: 'Visa',
       card_type_code: 0,
       card_exp_date: '10/17',
+      issuer: 'Sberbank of Russia',
       issuer_bank_country: 'RU',
       status: 'Completed',
       status_code: 3,
@@ -72,6 +73,7 @@ describe CloudPayments::Transaction do
     specify{ expect(subject.card_type).to eq('Visa') }
     specify{ expect(subject.card_type_code).to eq(0) }
     specify{ expect(subject.card_exp_date).to eq('10/17') }
+    specify{ expect(subject.issuer).to eq('Sberbank of Russia') }
     specify{ expect(subject.issuer_bank_country).to eq('RU') }
     specify{ expect(subject.reason).to eq('Approved') }
     specify{ expect(subject.reason_code).to eq(0) }
@@ -111,6 +113,7 @@ describe CloudPayments::Transaction do
     it_behaves_like :not_raise_without_attribute, :ip_longitude, :ip_lng
     it_behaves_like :not_raise_without_attribute, :card_type_code
     it_behaves_like :not_raise_without_attribute, :card_exp_date
+    it_behaves_like :not_raise_without_attribute, :issuer
     it_behaves_like :not_raise_without_attribute, :issuer_bank_country
     it_behaves_like :not_raise_without_attribute, :reason
     it_behaves_like :not_raise_without_attribute, :reason_code
