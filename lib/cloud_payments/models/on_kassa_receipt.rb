@@ -10,6 +10,7 @@ module CloudPayments
     property :reg_number, required: true
     property :inn, required: true
     property :type, required: true
+    property :ofd, required: true
     property :url, required: true
     property :qr_code_url, required: true
     property :amount, transform_with: DecimalTransform, required: true

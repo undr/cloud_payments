@@ -227,4 +227,46 @@ describe CloudPayments::Webhooks do
     specify { expect(subject.failed_transactions).to eq 22 }
     specify { expect(subject.next_transaction_at).to eq DateTime.parse('2015-11-18 20:29:05') }
   end
+
+  describe 'on_kassa_receipt' do
+    let(:raw_data) do
+      {"Id"=>"sc_a38ca02005d40db7d32b36a0097b0",
+       "DocumentNumber"=>"1234",
+       "SessionNumber"=>"12345",
+       "FiscalSign"=>"signsgin",
+       "DeviceNumber"=>"123465",
+       "RegNumber"=>"12345",
+       "Inn"=>"0",
+       "Type"=>"Type",
+       "Ofd"=>"Ofd",
+       "Url"=>"http://example.com/url/",
+       "QrCodeUrl"=>"http://example.com/url",
+       "Amount"=>"11.11",
+       "DateTime"=>"2015-11-18 20:29:05",
+       "Receipt"=>"{}",
+       "TransactionId" => "12321123",
+       "InvoiceId" => "123123",
+       "AccountId" => "3213213"}
+    end
+
+    subject { CloudPayments.webhooks.kassa_receipt(raw_data) }
+
+    specify { expect(subject.id).to eq "sc_a38ca02005d40db7d32b36a0097b0" }
+    specify { expect(subject.document_number).to eq '1234' }
+    specify { expect(subject.session_number).to eq '12345' }
+    specify { expect(subject.fiscal_sign).to eq 'signsgin' }
+    specify { expect(subject.device_number).to eq '123465' }
+    specify { expect(subject.reg_number).to eq '12345' }
+    specify { expect(subject.inn).to eq '0' }
+    specify { expect(subject.type).to eq 'Type' }
+    specify { expect(subject.ofd).to eq 'Ofd' }
+    specify { expect(subject.url).to eq 'http://example.com/url/' }
+    specify { expect(subject.qr_code_url).to eq 'http://example.com/url' }
+    specify { expect(subject.amount).to eq 11.11 }
+    specify { expect(subject.date_time).to eq DateTime.parse('2015-11-18 20:29:05') }
+    specify { expect(subject.receipt).to eq '{}' }
+    specify { expect(subject.transaction_id).to eq '12321123' }
+    specify { expect(subject.invoice_id).to eq '123123' }
+    specify { expect(subject.account_id).to eq '3213213' }
+  end
 end
