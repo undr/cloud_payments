@@ -81,6 +81,7 @@ transaction = CloudPayments.client.payments.cards.charge(
 # :card_last_four=>"1111",
 # :card_type=>"Visa",
 # :card_type_code=>0,
+# :issuer=>"Sberbank of Russia",
 # :issuer_bank_country=>"RU",
 # :status=>"Completed",
 # :status_code=>3,

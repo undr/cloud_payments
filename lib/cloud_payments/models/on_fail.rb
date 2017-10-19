@@ -23,6 +23,7 @@ module CloudPayments
     property :ip_city
     property :ip_region
     property :ip_district
+    property :issuer
     property :issuer_bank_country
     property :description
     property :metadata, from: :data, default: {}
