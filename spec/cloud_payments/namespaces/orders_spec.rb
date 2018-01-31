@@ -42,4 +42,16 @@ describe CloudPayments::Namespaces::Orders do
       end
     end
   end
+
+  describe '#cancel' do
+    context do
+      before{ stub_api_request('orders/cancel/successful').perform }
+      specify{ expect(subject.cancel('12345')).to be_truthy }
+    end
+
+    context do
+      before{ stub_api_request('orders/cancel/failed').perform }
+      specify{ expect{ subject.cancel('12345') }.to raise_error(CloudPayments::Client::GatewayError, 'Error message') }
+    end
+  end
 end
