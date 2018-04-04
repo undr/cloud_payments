@@ -42,9 +42,9 @@ module CloudPayments
           attributes.each_with_object({}) do |(key, value), result|
             if value.is_a?(Hash)
               if key.to_s == 'json_data'
-                value = MultiJson.dump(value)
+                value = ::MultiJson.dump(value)
               else
-                value = convert_keys_to_api(value) && ()
+                value = convert_keys_to_api(value)
               end
             end
 
