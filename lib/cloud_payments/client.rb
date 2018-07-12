@@ -10,8 +10,8 @@ module CloudPayments
 
     attr_reader :config, :connection
 
-    def initialize
-      @config = CloudPayments.config
+    def initialize(config = nil)
+      @config = config || CloudPayments.config
       @connection = build_connection
     end
 
