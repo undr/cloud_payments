@@ -1,9 +1,3 @@
-# Attention!!!
-
-*I am not able to maintain this repo anymore. I have no real projects which use this gem, so I do not understand the needs. I cannot test your changes in production env. So it would be nice if someone would take the care of this gem.*
-
-*Я больше не в состоянии поддерживать этот гем. У меня нет реальных проектов которые его используют, поэтому я не понимаю потребности которые возникают у пользователей. Я не могу его обновлять добавляя новые фичи и проверять закрытые баги на продакшене. Было бы здорово если бы кто-то забрал его к себе и заботился о нем (если есть такая потребность)*
-
 # CloudPayments
 
 CloudPayments ruby client (http://cloudpayments.eu/Docs/Integration)
@@ -123,6 +117,30 @@ transaction.token
 ```ruby
 client = CloudPayment::Client.new(config)
 client.payments.cards.charge(...)
+```
+
+## Kassa Receipt
+  CloudPayments Kassa API (https://cloudpayments.ru/docs/api/kassa)
+
+```ruby
+  CloudPayments.client.kassa.receipt({
+    :account_id => "user@example.com",
+    :customer_receipt => {
+    :items => [
+       {
+            :amount => "13350.00",
+             :ean13 => nil,
+             :label => "Good Description",
+             :price => "13350.00",
+          :quantity => 1.0,
+               :vat => nil
+        }
+      ]
+    },
+                 :inn => "7708806666",
+          :invoice_id => "231312312",
+                :type => "Income"
+  })
 ```
 
 ## Webhooks
