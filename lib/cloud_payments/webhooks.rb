@@ -23,6 +23,10 @@ module CloudPayments
       true
     end
 
+    def kassa_receipt(data)
+      OnKassaReceipt.new(@serializer.load(data))
+    end
+
     def on_recurrent(data)
       OnRecurrent.new(@serializer.load(data))
     end
