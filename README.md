@@ -95,30 +95,6 @@ transaction.token
 # => "a4e67841-abb0-42de-a364-d1d8f9f4b3c0"
 ```
 
-## Kassa Receipt
-  CloudPayments Kassa API (https://cloudpayments.ru/docs/api/kassa)
-
-```ruby
-  CloudPayments.client.kassa.receipt({
-    :account_id => "user@example.com",
-    :customer_receipt => {
-    :items => [
-       {
-            :amount => "13350.00",
-             :ean13 => nil,
-             :label => "Good Description",
-             :price => "13350.00",
-          :quantity => 1.0,
-               :vat => nil
-        }
-      ]
-    },
-                 :inn => "7708806666",
-          :invoice_id => "231312312",
-                :type => "Income"
-  })
-```
-
 ## Webhooks
 
 ```ruby
