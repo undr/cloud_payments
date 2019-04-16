@@ -40,6 +40,7 @@ describe CloudPayments::Transaction do
       status_code: 3,
       reason: 'Approved',
       reason_code: 0,
+      refunded: false,
       card_holder_message: 'Payment successful',
       name: 'CARDHOLDER NAME',
       token: 'a4e67841-abb0-42de-a364-d1d8f9f4b3c0'
@@ -80,6 +81,7 @@ describe CloudPayments::Transaction do
     specify{ expect(subject.card_holder_message).to eq('Payment successful') }
     specify{ expect(subject.name).to eq('CARDHOLDER NAME') }
     specify{ expect(subject.token).to eq('a4e67841-abb0-42de-a364-d1d8f9f4b3c0') }
+    specify{ expect(subject.refunded).to eq(false) }
 
     context 'without any attributes' do
       let(:attributes){ {} }
@@ -117,6 +119,7 @@ describe CloudPayments::Transaction do
     it_behaves_like :not_raise_without_attribute, :issuer_bank_country
     it_behaves_like :not_raise_without_attribute, :reason
     it_behaves_like :not_raise_without_attribute, :reason_code
+    it_behaves_like :not_raise_without_attribute, :refunded
     it_behaves_like :not_raise_without_attribute, :card_holder_message
     it_behaves_like :not_raise_without_attribute, :name
     it_behaves_like :not_raise_without_attribute, :token
@@ -252,6 +255,23 @@ describe CloudPayments::Transaction do
       context do
         let(:attributes){ { ip_longitude: 12.34 } }
         specify{ expect(subject.ip_location).to be_nil }
+      end
+    end
+
+    describe '#refunded?' do
+      context do
+        let(:attributes) { { refunded: false } }
+        specify { expect(subject.refunded?).to be_falsey }
+      end
+
+      context do
+        let(:attributes) { { refunded: true } }
+        specify { expect(subject.refunded?).to be_truthy }
+      end
+
+      context do
+        let(:attributes) { { refunded: nil } }
+        specify { expect(subject.refunded?).to be_falsey }
       end
     end
   end

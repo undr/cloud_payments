@@ -123,6 +123,12 @@ describe CloudPayments::Namespaces::Payments do
         specify{ expect(subject.get(transaction_id).id).to eq(transaction_id) }
         specify{ expect(subject.get(transaction_id).reason).to eq('Approved') }
       end
+
+      context 'transaction is refunded' do
+        before{ stub_api_request('payments/get/refunded').perform }
+        specify{ expect(subject.get(transaction_id)).to be_completed }
+        specify{ expect(subject.get(transaction_id)).to be_refunded }
+      end
     end
 
     context 'config.raise_banking_errors = true' do

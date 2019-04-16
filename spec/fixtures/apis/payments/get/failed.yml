@@ -37,6 +37,7 @@
         "StatusCode": 5,
         "Reason": "InsufficientFunds",
         "ReasonCode": 5051,
+        "Refunded": false,
         "CardHolderMessage": "Insufficient funds on account",
         "Name": "CARDHOLDER NAME"
       },

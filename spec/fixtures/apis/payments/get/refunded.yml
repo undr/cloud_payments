@@ -39,7 +39,7 @@
         "StatusCode":3,
         "Reason":"Approved",
         "ReasonCode":0,
-        "Refunded": false,
+        "Refunded": true,
         "CardHolderMessage":"Payment successful",
         "Name":"CARDHOLDER NAME",
         "Token":"a4e67841-abb0-42de-a364-d1d8f9f4b3c0"
