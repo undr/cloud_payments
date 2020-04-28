@@ -42,6 +42,7 @@ module CloudPayments
     property :status_code
     property :reason
     property :reason_code
+    property :refunded
     property :card_holder_message
     property :token
 
@@ -79,6 +80,10 @@ module CloudPayments
 
     def declined?
       status == DECLINED
+    end
+
+    def refunded?
+      refunded
     end
   end
 end
