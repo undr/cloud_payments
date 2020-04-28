@@ -1,0 +1,6 @@
+---
+:request:
+  :url: '/orders/cancel'
+  :body: '{"Id":"12345"}'
+:response:
+  :body: '{"Success":true,"Message":null}'
