@@ -32,6 +32,8 @@ $ gem install cloud_payments
 
 ### Configuration
 
+#### Common usage. Global configuration:
+
 ```ruby
 CloudPayments.configure do |c|
   c.host = 'http://localhost:3000'    # By default, it is https://api.cloudpayments.ru
@@ -43,6 +45,18 @@ CloudPayments.configure do |c|
 end
 ```
 
+use can use CloudPayments.client and other resources with these global config.
+
+#### Local configuration:
+
+```ruby
+config = CloudPayments::Config.configure do |c|
+  c.host = 'http://localhost:3000'    # By default, it is https://api.cloudpayments.ru
+  c.public_key = ''
+  c.secret_key = ''
+end
+```
+
 ### Test method
 
 ```ruby
@@ -51,6 +65,8 @@ CloudPayments.client.ping
 ```
 
 ### Cryptogram-based payments
+
+#### With global configuration:
 
 ```ruby
 transaction = CloudPayments.client.payments.cards.charge(
@@ -98,6 +114,13 @@ transaction.class
 # => CloudPayments::Transaction
 transaction.token
 # => "a4e67841-abb0-42de-a364-d1d8f9f4b3c0"
+```
+
+#### With local configuration:
+
+```ruby
+client = CloudPayment::Client.new(config)
+client.payments.cards.charge(...)
 ```
 
 ## Webhooks

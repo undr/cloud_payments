@@ -36,7 +36,9 @@ module CloudPayments
       end
 
       def raise_reasoned_gateway_error(body)
-        fail Client::GATEWAY_ERRORS[body[:model][:reason_code]].new(body) if reason_present?(body)
+        return unless reason_present?(body)
+        error_class = Client::GATEWAY_ERRORS[body[:model][:reason_code]]
+        fail error_class.new(body) if error_class
       end
 
       def raise_raw_gateway_error(body)
