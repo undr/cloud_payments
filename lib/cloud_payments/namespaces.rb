@@ -27,7 +27,7 @@ module CloudPayments
 
     def ping
       !!(perform_request('/test').body || {})[:success]
-    rescue ::Faraday::Error::ConnectionFailed, ::Faraday::Error::TimeoutError, CloudPayments::Client::ServerError => e
+    rescue ::Faraday::ConnectionFailed, ::Faraday::TimeoutError, CloudPayments::Client::ServerError => e
       false
     end
   end

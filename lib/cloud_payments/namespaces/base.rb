@@ -24,7 +24,7 @@ module CloudPayments
       protected
 
       def api_exceptions
-        [::Faraday::Error::ConnectionFailed, ::Faraday::Error::TimeoutError, Client::ServerError, Client::GatewayError]
+        [::Faraday::ConnectionFailed, ::Faraday::TimeoutError, Client::ServerError, Client::GatewayError]
       end
 
       def resource_path(path = nil)

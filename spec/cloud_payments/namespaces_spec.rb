@@ -34,7 +34,7 @@ describe CloudPayments::Namespaces do
     end
 
     context 'when exception occurs while request' do
-      before{ stub_api_request('ping/failed').to_raise(::Faraday::Error::ConnectionFailed) }
+      before{ stub_api_request('ping/failed').to_raise(::Faraday::ConnectionFailed) }
       specify{ expect(subject.ping).to be_falsy }
     end
 
