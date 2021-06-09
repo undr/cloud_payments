@@ -18,10 +18,11 @@ module CloudPayments
     def perform_request(path, params = nil)
       connection.basic_auth(config.public_key, config.secret_key)
       body = params ? convert_to_json(params) : nil
+      request_id = extract_request_id_from_params(params) || calculate_request_id(body)
       response = connection.post(
         path,
         body,
-        headers.merge('X-Request-ID' => calculate_request_id(body))
+        headers.merge('X-Request-ID' => request_id)
       )
 
       Response.new(response.status, response.body, response.headers).tap do |response|
@@ -30,6 +31,10 @@ module CloudPayments
     end
 
     private
+
+    def extract_request_id_from_params(params)
+      Hashie.symbolize_keys(Hash(params))[:invoice_id]
+    end
 
     def calculate_request_id(body)
       return unless body
