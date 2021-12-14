@@ -33,7 +33,9 @@ module CloudPayments
     private
 
     def extract_request_id_from_params(params)
-      Hashie.symbolize_keys(Hash(params))[:invoice_id]
+      invoice_id = Hashie.symbolize_keys(Hash(params))[:invoice_id]
+      type = Hashie.symbolize_keys(Hash(params))[:type]
+      "#{invoice_id.to_s}-#{type.to_s}"
     end
 
     def calculate_request_id(body)
