@@ -16,7 +16,13 @@ module CloudPayments
 
     def perform_request(path, params = nil)
       connection.basic_auth(config.public_key, config.secret_key)
-      response = connection.post(path, (params ? convert_to_json(params) : nil), headers)
+      body = params ? convert_to_json(params) : nil
+      request_id = calculate_request_id(body)
+      response = connection.post(
+        path,
+        body,
+        headers.merge('X-Request-ID' => request_id)
+      )
 
       Response.new(response.status, response.body, response.headers).tap do |response|
         raise_transport_error(response) if response.status.to_i >= 300
@@ -24,6 +30,12 @@ module CloudPayments
     end
 
     private
+
+    def calculate_request_id(body)
+      return unless body
+
+      Digest::SHA2.hexdigest(body)
+    end
 
     def convert_to_json(data)
       config.serializer.dump(data)
